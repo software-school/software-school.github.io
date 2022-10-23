@@ -115,26 +115,18 @@
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
-  var settings = {
-    "url": "https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/",
-    "method": "POST",
-    "timeout": 0,
-    "headers": {
-      "Content-Type": "application/json"
-    },
-    "data": "",
-  };
   function signUp(){
     let email = document.getElementById('email1').value;
     if(!validateEmail(email)) alert('Please check email address');
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Access-Control-Allow-Headers", "Content-Type");
+    myHeaders.append("Access-Control-Allow-Origin", "*");
+    myHeaders.append("Access-Control-Allow-Methods", "OPTIONS,POST");
 
     var raw = JSON.stringify({ "type" : "NgoLead","email": email });
     console.log("raw: " + raw)
     var requestOptions = {
       method: 'POST',
-      headers: myHeaders,
       body: raw,
       redirect: 'follow'
     };
