@@ -95,10 +95,13 @@
   </header>
 
   <main class="px-3">
-    <h1>Software School</h1>
+    <h1>Trust List</h1>
+    <p class="lead"> 
+      Use the best technology like web app, donation marketing and lots more. All this starts from <b>199/- per month.</b>
+      </p>
 
       <p class="lead">
-      Get Five free book in your email account. 
+      Register Now to keep updated and get an Early bird discount.
       </p>
 
 
@@ -107,7 +110,7 @@
       </p>
 
     <p class="lead">
-      <a href="#" onclick="signUp()" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Get Books</a>
+      <a href="#" onclick="signUp()" class="btn btn-lg btn-secondary fw-bold border-white bg-white">sign up</a>
     </p>
   </main>
 
@@ -128,7 +131,7 @@
     myHeaders.append("Access-Control-Allow-Origin", "*");
     myHeaders.append("Access-Control-Allow-Methods", "OPTIONS,POST");
 
-    var raw = JSON.stringify({ "type" : "pythonBookLead","email": email });
+    var raw = JSON.stringify({ "type" : "NgoLead","email": email });
     console.log("raw: " + raw)
     var requestOptions = {
       method: 'POST',
@@ -138,10 +141,7 @@
 
     fetch("https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/", requestOptions)
       .then(response => response.text())
-      .then(result => {
-        alert('you will get the books shortly... Thanks!')
-        console.log(result)
-      })
+      .then(result => console.log(result))
       .catch(error => console.log('error', error));
   }
 
