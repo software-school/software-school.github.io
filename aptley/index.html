@@ -12,7 +12,7 @@
 
 
 
-	<link href="https://getbootstrap.com/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- Favicons -->
 	<link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -79,11 +79,11 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.2/examples/sign-in/signin.css" rel="stylesheet">
+    <link href="./signin.css" rel="stylesheet">
   </head>
 <body class="text-center">
-	<div id="app">
-		<main class="form-signin w-100 m-auto">
+	
+		<main id="app" class="form-signin w-100 m-auto">
 			<form>
 				<img class="mb-4" src="https://knorish-cdn.azureedge.net/public/642715e1-8ff8-436a-9d38-0dda4a85972d/websitelogo/20012023/tlr44.png" alt="" width="72" height="57">
 				<h1 class="h3 mb-3 fw-normal">Please provide</h1>
@@ -105,8 +105,7 @@
 					<a href="#" onclick="signUp()" class="w-100 btn btn-lg btn-primary">Next</a>
 				</p>
 			</form>
-		</main>	
-	</div>
+		</main>
 	 <script type="text/javascript">
 	 	console.log(localStorage) 
 		function getAssessmentLink() {
@@ -131,7 +130,9 @@
 			.then(response => response.text())
 			.then(result => {
 			  console.log(result);
-			  link = result;
+			  link = JSON.parse(result).toString();
+			  let app = document.getElementById('app'); 
+			  app.innerHTML = "<p>Your assessment is ready please click <a href='__link__'>here</a>. All the best!!!</p>".replace("__link__", link); 
 			})
 			.catch(error => console.log('error', error));
 			return link;
@@ -141,9 +142,7 @@
 			return re.test(email);
 		}
 		function signUp() {
-			let link = "https://play.gammezo.in/ums/assess/start?for=H9HCD4E"; //getAssessmentLink();
-			let app = document.getElementById('app'); 
-			app.innerHTML = "<main class='form-signin w-100 m-auto'><p>Your assessment is ready please click <a href='"+ link +"'>here</a>. All the best!!!</p></main>"; 
+			getAssessmentLink();			
 		}
 	</script>
 </body>
