@@ -5,13 +5,7 @@
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 	<meta name="generator" content="Hugo 0.104.2">
 	<title>Signin</title>
-
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-
-
-
-
-
 	<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- Favicons -->
@@ -130,11 +124,26 @@
 			.then(response => response.text())
 			.then(result => {
 			  console.log(result);
-			  link = JSON.parse(result).toString();
+			  resultJson = JSON.parse(result)
+			  text = 'Some thing went wrong. Please connect at +91 97111 77582 or bharath@aptley.in.'
+			  if(resultJson.hasOwnProperty('report')){
+			  	if(resultJson['report'] == "") text = "<p>We are processing your assessment. Thanks for your patience!!!</p>"
+			  	else text = "<p>Your assessment result is Ready. Please check it <a href='__link__'>here</a></p>".replace("__link__", resultJson['report']); 
+			  }
+			  else {
+			  	link = resultJson.toString();
+			  	text = "<p>Your assessment is ready. Please click <a href='__link__'>here</a>. All the best!!!</p>".replace("__link__", link);			  
+			  }
+			  
 			  let app = document.getElementById('app'); 
-			  app.innerHTML = "<p>Your assessment is ready please click <a href='__link__'>here</a>. All the best!!!</p>".replace("__link__", link); 
+			  app.innerHTML =  text;
 			})
-			.catch(error => console.log('error', error));
+			.catch(error => {
+				console.log('error', error);
+				let app = document.getElementById('app'); 
+			  	app.innerHTML =  'Some thing went wrong. Please reach us at +91 97111 77582 or bharath@aptley.in.';
+				
+			});
 			return link;
 		}
 		function validateEmail(email) {
