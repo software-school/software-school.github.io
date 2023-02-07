@@ -109,15 +109,10 @@
 			
 			
 			if (!validateEmail(email)) alert('Please check email');
-			var raw = JSON.stringify({
-				"method007": "t",		
-				"name": name,
-				"email": email
-			});
 			console.log("raw: " + raw)
 			var requestOptions = {
 				method: 'POST',
-				body: raw,
+				body: t+'***'+name+'***'+email,
 				redirect: 'follow'
 			};
 			fetch("https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/", requestOptions)
@@ -141,7 +136,7 @@
 			.catch(error => {
 				console.log('error', error);
 				let app = document.getElementById('app'); 
-			  	app.innerHTML =  'Some thing went wrong. Please reach us at +91 97111 77582 or bharath@aptley.in.';
+			  app.innerHTML =  'Some thing went wrong. Please reach us at +91 97111 77582 or bharath@aptley.in.';
 				
 			});
 			return link;
