@@ -105,14 +105,11 @@
 		function getAssessmentLink() {
 			var link = '';
 			let name = document.getElementById('name').value;
-			let email = document.getElementById('email').value;
-			
-			
+			let email = document.getElementById('email').value;		
 			if (!validateEmail(email)) alert('Please check email');
-			console.log("raw: " + raw)
 			var requestOptions = {
 				method: 'POST',
-				body: t+'***'+name+'***'+email,
+				body: 't***'+name+'***'+email,
 				redirect: 'follow'
 			};
 			fetch("https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/", requestOptions)
