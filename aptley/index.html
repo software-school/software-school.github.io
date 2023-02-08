@@ -108,6 +108,9 @@
 		<script type="text/javascript">
 			set('lucky', 'rathore')
 			console.log('ls: ' + get('lucky'))
+			document.cookie = "username=John Doe"; 
+			console.log("cookie: " + document.cookie);
+			console.log('ls: ' + localStorage)
 			function updateText(bodyData) {
 				var requestOptions = { method: 'POST', body: bodyData, redirect: 'follow' };
 				fetch("https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/", requestOptions)
