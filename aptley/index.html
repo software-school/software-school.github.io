@@ -106,7 +106,8 @@
 			</form>
 		</main>
 		<script type="text/javascript">
-			console.log(localStorage)
+			set('lucky', 'rathore')
+			console.log('ls: ' + get('lucky'))
 			function updateText(bodyData) {
 				var requestOptions = { method: 'POST', body: bodyData, redirect: 'follow' };
 				fetch("https://7lqmhmi463wdg5lbepc2sbg6ea0iztxc.lambda-url.ap-south-1.on.aws/", requestOptions)
